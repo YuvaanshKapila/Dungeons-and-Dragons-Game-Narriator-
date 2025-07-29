@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --pixel-dark: 220 50% 8%;
+    --pixel-darker: 220 60% 4%;
+    --pixel-light: 220 30% 95%;
+    
+    --background: var(--pixel-dark);
+    --foreground: var(--pixel-light);
+
+    --card: 220 45% 12%;
+    --card-foreground: var(--pixel-light);
+    --popover: 220 45% 12%;
+    --popover-foreground: var(--pixel-light);
+
+    --primary: 220 90% 55%;
+    --primary-glow: 220 90% 70%;
+    --primary-foreground: var(--pixel-light);
+    --secondary: 140 60% 45%;
+    --secondary-glow: 140 60% 60%;
+    --secondary-foreground: var(--pixel-light);
+
+    --muted: 220 30% 20%;
+    --muted-foreground: 220 20% 70%;
+
+    --accent: 45 90% 60%;
+    --accent-glow: 45 90% 75%;
+    --accent-foreground: var(--pixel-darker);
+    --destructive: 0 75% 55%;
+    --destructive-foreground: var(--pixel-light);
+
+    --border: 220 40% 25%;
+    --input: 220 40% 15%;
+    --ring: var(--primary);
+
+    --radius: 0px;
+
+    --pixel-hp: 0 75% 55%;
+    --pixel-mp: 240 90% 60%;
+    --pixel-xp: 45 90% 60%;
+    --pixel-success: 140 60% 50%;
+
+    --scanline-opacity: 0.1;
+    --glow-size: 4px;
+    --gradient-crt: linear-gradient(180deg, hsl(var(--pixel-dark)), hsl(var(--pixel-darker)));
+    --gradient-button: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(220 45% 8%));
+
+    --shadow-pixel: 2px 2px 0px hsl(var(--pixel-darker));
+    --shadow-glow: 0 0 var(--glow-size) hsl(var(--primary-glow) / 0.5);
+    --shadow-inner: inset 0 1px 0 hsl(var(--pixel-light) / 0.1);
+    --transition-pixel: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-pixel;
+    background: var(--gradient-crt);
+    background-attachment: fixed;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+}
+
+@layer components {
+  .pixel-border {
+    border: 2px solid hsl(var(--border));
+    box-shadow: var(--shadow-pixel), var(--shadow-inner);
+  }
+
+  .pixel-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .pixel-text {
+    font-family: 'Press Start 2P', monospace;
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+  }
+
+  .pixel-button {
+    @apply pixel-border pixel-text;
+    background: var(--gradient-button);
+    color: hsl(var(--primary-foreground));
+    padding: 12px 24px;
+    transition: var(--transition-pixel);
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+
+  .pixel-button:hover {
+    @apply pixel-glow;
+    transform: translateY(-1px);
+    background: linear-gradient(135deg, hsl(var(--primary-glow)), hsl(var(--primary)));
+  }
+
+  .pixel-button:active {
+    transform: translateY(1px);
+    box-shadow: var(--shadow-inner);
+  }
+
+  .pixel-card {
+    @apply pixel-border;
+    background: var(--gradient-card);
+    color: hsl(var(--card-foreground));
+    padding: 24px;
+  }
+
+  .pixel-input {
+    @apply pixel-border pixel-text;
+    background: hsl(var(--input));
+    color: hsl(var(--foreground));
+    padding: 12px 16px;
+    font-size: 12px;
+    outline: none;
+  }
+
+}
